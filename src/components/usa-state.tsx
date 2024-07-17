@@ -23,6 +23,7 @@ const USAState: React.FC<USAStateProps> = ({
       data-name={state}
       className={`usa-state ${state.toLowerCase()}`}
       onClick={onClick}
+      title={`hagvfavjabjbhcj`}
     />
   );
 };
