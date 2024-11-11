@@ -5,7 +5,8 @@ interface USAStateProps {
   state: string;
   fill: string;
   stroke: string;
-  onClick: () => void;
+  onClick?: () => void;
+  onHover?: () => void;
 }
 
 const USAState: React.FC<USAStateProps> = ({ 
@@ -14,9 +15,11 @@ const USAState: React.FC<USAStateProps> = ({
   fill,
   stroke,
   onClick,
+  onHover
 }) => {
   return (
     <path
+      onMouseOver={onHover}
       d={dimensions}
       fill={fill}
       stroke={stroke}

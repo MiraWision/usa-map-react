@@ -8,17 +8,20 @@ import { USAState } from './usa-state';
 import '../styles.css';
 
 type OnStateClick = (state: USAStateAbbreviation) => void;
+type OnStateHover = (state: USAStateAbbreviation) => void;
 
 interface State {
   fill?: string;
   stroke?: string;
   onClick?: OnStateClick;
+  onHover?: OnStateHover;
 }
 
 interface MapSettings {
   width?: string | number;
   height?: string | number;
   title?: string;
+  hideStates?: [USAStateAbbreviation]
 }
 
 interface Props {
@@ -33,7 +36,7 @@ interface Props {
 const USAMap: React.FC<Props> = ({
   defaultState = {
     fill: '#d3d3d3',
-    stroke: '#a5a5a5', 
+    stroke: '#a5a5a5',
   },
   customStates = {},
   mapSettings = {
@@ -52,6 +55,14 @@ const USAMap: React.FC<Props> = ({
     }
   };
 
+  const onHover = (stateAbbreviation: USAStateAbbreviation) => {
+    if (customStates[stateAbbreviation]?.onHover) {
+      customStates[stateAbbreviation]?.onHover!(stateAbbreviation)
+    } else {
+      defaultState.onClick?.(stateAbbreviation)
+    }
+  }
+
   return (
     <svg
       className={`usa-map ${className}`}
@@ -61,31 +72,41 @@ const USAMap: React.FC<Props> = ({
       viewBox='0 0 959 593'
     >
       <g className='outlines'>
-        {Object.entries(StatePaths).map(([abbreviation, path]) => (
-          <USAState
-            key={abbreviation}
-            dimensions={path}
-            state={abbreviation}
-            fill={customStates[abbreviation]?.fill ?? defaultState.fill!}
-            stroke={customStates[abbreviation]?.stroke ?? defaultState.stroke!}
-            onClick={() => onClick(abbreviation)}
-          /> 
-        ))}
-        
-        <g className='DC state'>
-          <circle
-            className='dc2'
-            onClick={() => onClick('DC')}
-            data-name={'DC'}
-            fill={customStates['DC']?.fill ?? defaultState.fill!}
-            stroke={customStates['DC']?.stroke ?? defaultState.stroke!}
-            strokeWidth='1.5'
-            cx='801.3'
-            cy='251.8'
-            r='5'
-            opacity='1'
-          />
-        </g>
+        {Object.entries(StatePaths).map(([abbreviation, path]) => {
+
+          if (mapSettings.hideStates?.includes(abbreviation)) {
+            return null
+          }
+
+          return (
+            <USAState
+              key={abbreviation}
+              onHover={() => onHover(abbreviation)}
+              dimensions={path}
+              state={abbreviation}
+              fill={customStates[abbreviation]?.fill ?? defaultState.fill!}
+              stroke={customStates[abbreviation]?.stroke ?? defaultState.stroke!}
+              onClick={() => onClick(abbreviation)}
+            />
+          )
+        }).filter(f => f !== null)}
+
+        {!mapSettings.hideStates?.includes("DC") &&
+          <g className='DC state'>
+            <circle
+              className='dc2'
+              onClick={() => onClick('DC')}
+              data-name={'DC'}
+              fill={customStates['DC']?.fill ?? defaultState.fill!}
+              stroke={customStates['DC']?.stroke ?? defaultState.stroke!}
+              strokeWidth='1.5'
+              cx='801.3'
+              cy='251.8'
+              r='5'
+              opacity='1'
+            />
+          </g>
+        }
       </g>
     </svg>
   );
