@@ -59,7 +59,7 @@ const USAMap: React.FC<Props> = ({
     if (customStates[stateAbbreviation]?.onHover) {
       customStates[stateAbbreviation]?.onHover!(stateAbbreviation)
     } else {
-      defaultState.onClick?.(stateAbbreviation)
+      defaultState.onHover?.(stateAbbreviation)
     }
   }
 
