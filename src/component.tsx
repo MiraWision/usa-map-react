@@ -46,7 +46,8 @@ export function USAMap<
               return null;
             }
 
-            const c = customStates?.[abbreviation as Exclude<TStateAbbreviation, "DC">];
+            const c =
+              customStates?.[abbreviation as Exclude<TStateAbbreviation, "DC">];
 
             return (
               <path
@@ -75,31 +76,33 @@ export function USAMap<
           })
           .filter((f) => f !== null)}
 
-        <circle
-          className={cn(
-            defaultState?.props?.className,
-            customStates?.["DC"]?.props?.className,
-          )}
-          onClick={() => setClickedState && setClickedState("DC" as T)}
-          onMouseOver={() => setHoveredState && setHoveredState("DC" as T)}
-          data-name={"DC"}
-          fill={
-            customStates?.["DC"]?.props?.fill ??
-            defaultState?.props?.fill ??
-            "#ffffff"
-          }
-          stroke={
-            customStates?.["DC"]?.props?.stroke ??
-            defaultState?.props?.stroke ??
-            "#000000"
-          }
-          strokeWidth="1.5"
-          cx="801.3"
-          cy="251.8"
-          r="5"
-          opacity="1"
-          {...customStates?.["DC"]?.props}
-        />
+        {!mapSettings?.hideStates?.includes("DC") && (
+          <circle
+            className={cn(
+              defaultState?.props?.className,
+              customStates?.["DC"]?.props?.className,
+            )}
+            onClick={() => setClickedState && setClickedState("DC" as T)}
+            onMouseOver={() => setHoveredState && setHoveredState("DC" as T)}
+            data-name={"DC"}
+            fill={
+              customStates?.["DC"]?.props?.fill ??
+              defaultState?.props?.fill ??
+              "#ffffff"
+            }
+            stroke={
+              customStates?.["DC"]?.props?.stroke ??
+              defaultState?.props?.stroke ??
+              "#000000"
+            }
+            strokeWidth="1.5"
+            cx="801.3"
+            cy="251.8"
+            r="5"
+            opacity="1"
+            {...customStates?.["DC"]?.props}
+          />
+        )}
       </g>
     </svg>
   );
