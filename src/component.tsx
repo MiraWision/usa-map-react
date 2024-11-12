@@ -20,6 +20,7 @@ export type USAMapProps<T extends TStateAbbreviation | string> = {
 };
 
 export function USAMap<
+  // This generic is just so the caller can disable the typing of state abbreviations.
   T extends string | TStateAbbreviation = TStateAbbreviation,
 >({
   defaultState,
