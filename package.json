@@ -35,7 +35,11 @@
     "react component",
     "USA map",
     "geography",
-    "maps"
+    "maps",
+    "labels",
+    "tooltips",
+    "interactive",
+    "state management"
   ],
   "author": "Yelysei Lukin <yelysei277@gmail.com>",
   "license": "MIT",
