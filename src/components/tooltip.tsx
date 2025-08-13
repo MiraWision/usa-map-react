@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 interface TooltipProps {
   content: React.ReactNode;
@@ -12,12 +12,14 @@ interface TooltipProps {
  */
 const Tooltip: React.FC<TooltipProps> = ({ content, x, y, visible }) => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
+  const tooltipRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (visible) {
-      // Adjust position to keep tooltip within viewport
-      const tooltipWidth = 200; // Approximate tooltip width
-      const tooltipHeight = 100; // Approximate tooltip height
+    if (visible && tooltipRef.current) {
+      // Get actual tooltip dimensions
+      const tooltipRect = tooltipRef.current.getBoundingClientRect();
+      const tooltipWidth = tooltipRect.width;
+      const tooltipHeight = tooltipRect.height;
       const viewportWidth = window.innerWidth;
       const viewportHeight = window.innerHeight;
 
@@ -40,6 +42,7 @@ const Tooltip: React.FC<TooltipProps> = ({ content, x, y, visible }) => {
 
   return (
     <div
+      ref={tooltipRef}
       className="usa-map-tooltip"
       style={{
         left: position.x,

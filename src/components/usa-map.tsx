@@ -298,15 +298,8 @@ const USAMap: React.FC<Props> = ({
                 className={`state-label ${abbreviation.toLowerCase()}-label`}
                 textAnchor="middle"
                 dominantBaseline="middle"
-                fill="#333"
-                fontSize="10"
-                fontWeight="600"
                 x={labelPosition.x}
                 y={labelPosition.y}
-                style={{
-                  textShadow: '1px 1px 2px rgba(255, 255, 255, 0.8)',
-                  pointerEvents: 'none',
-                }}
               >
                 {labelConfig?.render ? labelConfig.render(abbreviation as USAStateAbbreviation) : abbreviation}
               </text>

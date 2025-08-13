@@ -8,10 +8,10 @@
   user-select: none;
   transition: opacity 0.3s;
   text-shadow: 
-    -1px -1px 1px rgba(255, 255, 255, 0.8), 
-    1px -1px 1px rgba(255, 255, 255, 0.8), 
-    -1px 1px 1px rgba(255, 255, 255, 0.8), 
-    1px 1px 1px rgba(255, 255, 255, 0.8);
+    -1px -1px 4px rgba(255, 255, 255, 0.9), 
+    1px -1px 4px rgba(255, 255, 255, 0.9), 
+    -1px 1px 4px rgba(255, 255, 255, 0.9), 
+    1px 1px 4px rgba(255, 255, 255, 0.9);
   font-weight: 500;
   font-size: 12px;
   fill: #333;
