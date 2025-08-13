@@ -1,6 +1,6 @@
 {
   "name": "usa-map-react-docs",
-  "version": "1.0.5",
+  "version": "1.1.4",
   "description": "Documentation for @mirawision/usa-map-react package",
   "main": "build/index.js",
   "scripts": {
