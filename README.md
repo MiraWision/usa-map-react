@@ -27,6 +27,15 @@ or
 yarn add @mirawision/usa-map-react
 ```
 
+## Module Support
+
+This library supports both CommonJS and ES Modules for maximum compatibility:
+
+- **CommonJS**: `require('@mirawision/usa-map-react')`
+- **ES Modules**: `import { USAMap } from '@mirawision/usa-map-react'`
+
+The library automatically detects your module system and provides the appropriate format.
+
 ## Basic Usage
 
 ```tsx

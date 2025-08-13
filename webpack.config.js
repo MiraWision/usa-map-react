@@ -1,17 +1,9 @@
 const path = require('path');
 const webpack = require('webpack');
 
-module.exports = {
-  entry: './src/index.ts',
+const sharedConfig = {
   mode: 'production',
-  output: {
-    filename: 'index.js',
-    path: path.resolve(__dirname, 'dist'),
-    library: 'USAMap',
-    libraryTarget: 'umd',
-    globalObject: 'this',
-    umdNamedDefine: true,
-  },
+  entry: './src/index.ts',
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
@@ -33,6 +25,17 @@ module.exports = {
       'self': 'typeof self !== "undefined" ? self : this',
     }),
   ],
+};
+
+const cjsConfig = {
+  ...sharedConfig,
+  output: {
+    filename: 'index.js',
+    path: path.resolve(__dirname, 'dist/cjs'),
+    library: 'USAMap',
+    libraryTarget: 'commonjs2',
+    globalObject: 'this',
+  },
   externals: {
     react: {
       commonjs: 'react',
@@ -48,3 +51,24 @@ module.exports = {
     },
   },
 };
+
+const esmConfig = {
+  ...sharedConfig,
+  output: {
+    filename: 'index.js',
+    path: path.resolve(__dirname, 'dist/esm'),
+    library: {
+      type: 'module',
+    },
+    globalObject: 'this',
+  },
+  experiments: {
+    outputModule: true,
+  },
+  externals: {
+    react: 'react',
+    'react-dom': 'react-dom',
+  },
+};
+
+module.exports = [cjsConfig, esmConfig]; 
