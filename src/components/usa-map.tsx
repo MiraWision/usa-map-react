@@ -307,24 +307,34 @@ const USAMap: React.FC<Props> = ({
           })}
           
           {/* DC label */}
-          {!hiddenStates.includes('DC') && (customStates['DC']?.label?.enabled !== false || defaultState.label?.enabled !== false) && (
-            <text
-              className="state-label dc-label"
-              textAnchor="middle"
-              dominantBaseline="middle"
-              fill="#333"
-              fontSize="10"
-              fontWeight="600"
-              x={StateCentroids['DC'].x}
-              y={StateCentroids['DC'].y}
-              style={{
-                textShadow: '1px 1px 2px rgba(255, 255, 255, 0.8)',
-                pointerEvents: 'none',
-              }}
-            >
-              {customStates['DC']?.label?.render ? customStates['DC'].label.render('DC') : 
-              defaultState.label?.render ? defaultState.label.render('DC') : 'DC'}
-            </text>
+          {!hiddenStates.includes('DC') && (
+            (() => {
+              const stateConfig = customStates['DC'] || defaultState;
+              const labelConfig = stateConfig.label;
+              
+              if (labelConfig?.enabled === false) {
+                return null;
+              }
+
+              return (
+                <text
+                  className="state-label dc-label"
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  fill="#333"
+                  fontSize="10"
+                  fontWeight="600"
+                  x={StateCentroids['DC'].x}
+                  y={StateCentroids['DC'].y}
+                  style={{
+                    textShadow: '1px 1px 2px rgba(255, 255, 255, 0.8)',
+                    pointerEvents: 'none',
+                  }}
+                >
+                  {labelConfig?.render ? labelConfig.render('DC') : 'DC'}
+                </text>
+              );
+            })()
           )}
         </g>
       </svg>
