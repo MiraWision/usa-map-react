@@ -1,13 +1,16 @@
 const content = `
-The USA Map React Library is a flexible and customizable React component for rendering an interactive map of the United States.
-\`@mirawision/usa-map-react\` library allows for individual state customization, click handling, and more.
+A highly customizable and interactive SVG map of the United States, built using React. This library provides advanced features including state labels, tooltips, comprehensive event handlers, and state visibility control for data visualization and user interaction.
 
 ## Features
 
-- Customizable state appearances
-- Click handlers for individual states
-- Supports tooltips for states
-- Flexible map dimensions
+- **Interactive States**: Click, hover, focus, and blur event handlers for each state
+- **Custom Labels**: Display state abbreviations or custom content on each state
+- **Interactive Tooltips**: Show additional information on hover with custom styling
+- **State Visibility Control**: Hide specific states (e.g., Alaska and Hawaii) from the map
+- **Flexible Styling**: Customize fill colors, stroke colors, and visual effects
+- **TypeScript Support**: Full type safety with comprehensive TypeScript definitions
+- **Responsive Design**: Automatically adapts to container size
+- **Accessibility**: Keyboard navigation and screen reader support
 
 ## Installation
 
@@ -23,19 +26,34 @@ or
 yarn add @mirawision/usa-map-react
 \`\`\`
 
-## Usage Example
+## Basic Usage
 
-Here is quick example of how to use the library:
+Here is a quick example of how to use the library:
 
-\`\`\`jsx
+\`\`\`tsx
 import React from 'react';
-import { USAMap } from '@mirawision/usa-map-react';
+import { USAMap, USAStateAbbreviation } from '@mirawision/usa-map-react';
+
+const handleStateClick = (stateAbbreviation: USAStateAbbreviation) => {
+  console.log(\`You clicked on \${stateAbbreviation}\`);
+};
+
+const customStates = {
+  CA: {
+    fill: 'red',
+    onClick: handleStateClick,
+  },
+  TX: {
+    fill: 'blue',
+    stroke: 'green',
+    onClick: handleStateClick,
+  },
+};
 
 const App = () => (
   <div>
-    <h1>USA Map</h1>
-    
-    <USAMap />
+    <h1>US Map</h1>
+    <USAMap customStates={customStates} />
   </div>
 );
 
