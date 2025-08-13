@@ -3,3 +3,61 @@
   transition: fill 0.6s, stroke 0.6s;
 }
 
+.usa-map .state-label {
+  pointer-events: none;
+  user-select: none;
+  transition: opacity 0.3s;
+  text-shadow: 
+    -1px -1px 1px rgba(255, 255, 255, 0.8), 
+    1px -1px 1px rgba(255, 255, 255, 0.8), 
+    -1px 1px 1px rgba(255, 255, 255, 0.8), 
+    1px 1px 1px rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+  font-size: 12px;
+  fill: #333;
+}
+
+.usa-map .state-group:hover .state-label {
+  opacity: 0.8;
+}
+
+/* Hide labels for very small states to avoid clutter */
+.usa-map .ri-label,
+.usa-map .de-label,
+.usa-map .ct-label,
+.usa-map .nh-label,
+.usa-map .vt-label,
+.usa-map .dc-label {
+  font-size: 8px;
+}
+.usa-map .ma-label,
+.usa-map .md-label,
+.usa-map .nj-label {
+  font-size: 9px;
+}
+
+/* Ensure labels are always on top */
+.usa-map .labels {
+  z-index: 10;
+}
+
+.usa-map .state-label {
+  z-index: 10;
+}
+
+/* Tooltip styles */
+.usa-map-tooltip {
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #333;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  z-index: 1000;
+  pointer-events: none;
+  max-width: 200px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  line-height: 1.4;
+}
+

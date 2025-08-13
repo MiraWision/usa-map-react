@@ -1,6 +1,6 @@
 {
   "name": "@mirawision/usa-map-react",
-  "version": "1.2.1",
+  "version": "1.1.0",
   "description": "A highly customizable and interactive USA map component for React, allowing easy integration, state-based customization, and interactivity for data visualization and user interaction.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -15,7 +15,9 @@
     "start": "npm run build && node dist/index.js",
     "pack": "npm pack",
     "prepublish": "npm run build",
-    "publish": "npm publish --access public"
+    "publish": "npm publish --access public",
+    "dev": "cd docs && npm start",
+    "setup": "./setup-dev.sh"
   },
   "repository": {
     "type": "git",
@@ -48,6 +50,8 @@
   "devDependencies": {
     "@types/react": "18.3.3",
     "css-loader": "7.1.2",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
     "style-loader": "4.0.0",
     "ts-loader": "9.5.1",
     "typescript": "5.3.3",
