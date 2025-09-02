@@ -12,7 +12,7 @@
   "author": "Yelysei Lukin <yelysei277@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@mirawision/usa-map-react": "2.0.0",
+    "@mirawision/usa-map-react": "file:../",
     "marked": "12.0.1",
     "primeflex": "3.3.1",
     "primeicons": "6.0.1",

@@ -32,8 +32,9 @@ const cjsConfig = {
   output: {
     filename: 'index.js',
     path: path.resolve(__dirname, 'dist/cjs'),
-    library: 'USAMap',
-    libraryTarget: 'commonjs2',
+    library: {
+      type: 'commonjs2',
+    },
     globalObject: 'this',
   },
   externals: {
