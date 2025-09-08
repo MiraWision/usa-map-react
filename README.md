@@ -4,6 +4,14 @@ A highly customizable and interactive SVG map of the United States, built using 
 
 [Demo and advanced Documentation can be found here!](https://mirawision.github.io/usa-map-react)
 
+## Products Powered by this Library
+
+This library is proudly used in [StyleCrafts](https://stylecrafts.app) — a collection of free tools for designers and frontend developers.
+
+Color pickers, contrast checkers, QR code generators — all crafted with care, speed, and a clean UI.
+
+Check it out → [stylecrafts.app](https://stylecrafts.app)
+
 ## Features
 
 - **Interactive States**: Click, hover, focus, and blur event handlers for each state
